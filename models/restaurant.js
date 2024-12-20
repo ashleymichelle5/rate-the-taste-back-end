@@ -1,17 +1,17 @@
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 
 const restaurantSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'Restaurant name is required.']
+        required: [true, 'Restaurant name is required.']    
     },
     address: {
         type: String,
-        required: [true, 'Restaurant address is required.'],
+        required: [true, 'Restaurant address is required.']    
     },
     cuisine: {
         type: String,
-        required: [true, 'Restaurant cuisine is required.'],
+        required: [true, 'Restaurant cuisine is required.']    
     },
     reviews: [
         {
@@ -21,6 +21,7 @@ const restaurantSchema = new mongoose.Schema({
     ]
 });
 
-restaurantSchema.index({restaurant: 1});
+
+restaurantSchema.index({ name: 1, cuisine: 1, address: 1 });
 
 module.exports = mongoose.model('Restaurant', restaurantSchema);
