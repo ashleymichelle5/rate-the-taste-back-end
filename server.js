@@ -1,5 +1,5 @@
 const dotenv = require('dotenv');     
-//const cors = require('cors');         // politica de seguridad de DB significa que todas las peticiones deben venir de un metodo especifico, (control sobre quien puede acceder al DB)
+const cors = require('cors');         // politica de seguridad de DB significa que todas las peticiones deben venir de un metodo especifico, (control sobre quien puede acceder al DB)
 const express = require('express');   
 const mongoose = require('mongoose'); 
 dotenv.config();
@@ -22,7 +22,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 
-//app.use(cors());           
+app.use(cors());           
 app.use(express.json());   
 app.use('/users', usersRouter);                
 app.use('/restaurants', restaurantsRouter);     

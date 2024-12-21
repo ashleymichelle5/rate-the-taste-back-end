@@ -24,4 +24,3 @@
 * **connectDB** (custom module, not a library) for connecting to the database
 * **jsonwebtoken**
 * **bcrypt**
-* **react-router-dom**
