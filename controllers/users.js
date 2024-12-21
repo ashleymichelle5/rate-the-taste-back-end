@@ -8,6 +8,7 @@ const SALT_LENGTH = 12;
 
 router.post('/signup', async (req, res) => {
     try {
+        console.log(req.body);
         // Check if username or email already exists
         const userInDatabase = await User.findOne({ 
             $or: [
@@ -24,6 +25,7 @@ router.post('/signup', async (req, res) => {
                 return res.status(400).json({ error: 'Email already taken.' });
             }
         }
+       
 
         // Create new user
         const user = await User.create({

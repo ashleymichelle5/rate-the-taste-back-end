@@ -13,19 +13,16 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Get restaurant by ID
-router.get('/:id', async (req, res) => {
+router.get('/featured', async (req, res) => {
     try {
-        const restaurant = await Restaurant.findById(req.params.id)
-            .populate('reviews');
-        if(!restaurant) {
-            return res.status(404).json({ error: 'Restaurant not found.' });
-        }
-        res.json(restaurant);
-    } catch(error) {
-        res.status(500).json({ error: error.message });
+        const allRestaurants = await Restaurant.find();
+        res.json(allRestaurants);
+    }catch(error) {
+        res.status(500).json({error: error.message})
     }
 });
+
+
 
 // Search restaurants
 router.get('/search', async (req, res) => {
@@ -48,6 +45,8 @@ router.get('/search', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+
 
 // Create restaurant
 router.post('/', verifyToken, async (req, res) => {
@@ -90,6 +89,67 @@ router.delete('/:id', verifyToken, async (req, res) => {
             return res.status(404).json({ error: 'Restaurant not found.' });
         }
         res.json({ message: 'Restaurant deleted successfully.' });
+    } catch(error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+
+router.get('/seed', async (req, res) => {
+    try{
+        const restaurants = await Restaurant.create(
+            [
+                {
+                  "name": "The Golden Spoon",
+                  "address": "1234 Oak Street, Springfield, IL",
+                  "cuisine": "Italian",
+                 // "reviews": []
+                },
+                {
+                  "name": "Sushi Haven",
+                  "address": "4567 Pine Avenue, Chicago, IL",
+                  "cuisine": "Japanese",
+                 // "reviews": []
+                },
+                {
+                  "name": "Taco Fiesta",
+                  "address": "8901 Maple Drive, Miami, FL",
+                  "cuisine": "Mexican",
+                 // "reviews": []
+                },
+                {
+                  "name": "Café Bistro",
+                  "address": "3456 Birch Lane, San Francisco, CA",
+                  "cuisine": "French",
+                 // "reviews": []
+                },
+                {
+                  "name": "Spice Junction",
+                  "address": "7890 Cedar Road, New York, NY",
+                  "cuisine": "Indian",
+                 // "reviews": []
+                }
+              ]
+              
+        ) 
+        res.json(restaurants);
+    }catch(error) {
+        res.status(500).json({error: error.messsage});
+    }
+});
+
+
+// Get restaurant by ID
+router.get('/:id', async (req, res) => {
+    try {
+        const restaurant = await Restaurant.findById(req.params.id)
+        .populate('reviews')  
+        .populate({path: 'reviews.user',});
+        if(!restaurant) {
+            return res.status(404).json({ error: 'Restaurant not found.' });
+        }
+        res.json(restaurant);
     } catch(error) {
         res.status(500).json({ error: error.message });
     }

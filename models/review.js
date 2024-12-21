@@ -9,7 +9,7 @@ const reviewSchema = new mongoose.Schema({
     },
     bestDish: {
         type: String,
-        required: [true, 'Best dish is required.']
+        //required: [true, 'Best dish is required.']
     },
     details: {
         type: String,

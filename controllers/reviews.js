@@ -17,7 +17,7 @@ router.get('/user', verifyToken, async (req, res) => {
 });
 
 // Get restaurant reviews
-router.get('/restaurant/:restaurantId', async (req, res) => {
+router.get('/restaurant/:restaurantId/reviews', async (req, res) => {
     try {
         const reviews = await Review.find({ restaurant: req.params.restaurantId })
             .populate('user', 'username');
@@ -28,7 +28,7 @@ router.get('/restaurant/:restaurantId', async (req, res) => {
 });
 
 // Create review
-router.post('/restaurant/:restaurantId', verifyToken, async (req, res) => {
+router.post('/restaurant/:restaurantId/reviews', verifyToken, async (req, res) => {
     try {
         const reviewData = {
             ...req.body,
@@ -40,7 +40,8 @@ router.post('/restaurant/:restaurantId', verifyToken, async (req, res) => {
         
         await Restaurant.findByIdAndUpdate(
             req.params.restaurantId,
-            { $push: { reviews: review._id } }
+            { $push: { reviews: review._id }}, 
+            {new: true,}
         );
 
         res.status(201).json(review);
@@ -56,7 +57,7 @@ router.post('/restaurant/:restaurantId', verifyToken, async (req, res) => {
 });
 
 // Update review
-router.put('/:id', verifyToken, async (req, res) => {
+router.put('/restaurant/:restaurantId/reviews/:reviewId', verifyToken, async (req, res) => {
     try {
         const review = await Review.findById(req.params.id);
         if(!review) {
