@@ -104,31 +104,51 @@ router.get('/seed', async (req, res) => {
                   "name": "The Golden Spoon",
                   "address": "1234 Oak Street, Springfield, IL",
                   "cuisine": "Italian",
-                 // "reviews": []
+                  "phone": "204-327-0349",
+                  "photos": [
+                    "https://picsum.photos/200/300",
+                    "https://picsum.photos/300/400"
+                  ]
                 },
                 {
                   "name": "Sushi Haven",
                   "address": "4567 Pine Avenue, Chicago, IL",
                   "cuisine": "Japanese",
-                 // "reviews": []
+                  "phone": "234-3240-0349",
+                  "photos": [
+                    "https://picsum.photos/200/300",
+                    "https://picsum.photos/300/400"
+                  ]
                 },
                 {
                   "name": "Taco Fiesta",
                   "address": "8901 Maple Drive, Miami, FL",
                   "cuisine": "Mexican",
-                 // "reviews": []
+                  "phone": "234-320-0009",
+                  "photos": [
+                    "https://picsum.photos/200/300",
+                    "https://picsum.photos/300/400"
+                  ]
                 },
                 {
                   "name": "Café Bistro",
                   "address": "3456 Birch Lane, San Francisco, CA",
                   "cuisine": "French",
-                 // "reviews": []
+                  "phone": "200-777-9834",
+                  "photos": [
+                    "https://picsum.photos/200/300",
+                    "https://picsum.photos/300/400"
+                  ]
                 },
                 {
                   "name": "Spice Junction",
                   "address": "7890 Cedar Road, New York, NY",
                   "cuisine": "Indian",
-                 // "reviews": []
+                  "phone": "444-324-9999",
+                  "photos": [
+                    "https://picsum.photos/200/300",
+                    "https://picsum.photos/300/400"
+                  ]
                 }
               ]
               

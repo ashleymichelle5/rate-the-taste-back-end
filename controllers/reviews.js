@@ -59,7 +59,7 @@ router.post('/restaurant/:restaurantId/reviews', verifyToken, async (req, res) =
 // Update review
 router.put('/restaurant/:restaurantId/reviews/:reviewId', verifyToken, async (req, res) => {
     try {
-        const review = await Review.findById(req.params.id);
+        const review = await Review.findById(req.params.reviewId);
         if(!review) {
             return res.status(404).json({ error: 'Review not found.' });
         }
@@ -68,7 +68,7 @@ router.put('/restaurant/:restaurantId/reviews/:reviewId', verifyToken, async (re
         }
 
         const updatedReview = await Review.findByIdAndUpdate(
-            req.params.id,
+            req.params.reviewId,
             req.body,
             { new: true, runValidators: true }
         );
@@ -83,6 +83,8 @@ router.put('/restaurant/:restaurantId/reviews/:reviewId', verifyToken, async (re
 
 // Delete review
 router.delete('/:id', verifyToken, async (req, res) => {
+    console.log('DELETE request received for review ID:', req.params.id);
+    console.log('Authenticated user ID:', req.user._id);
     try {
         const review = await Review.findById(req.params.id);
         if(!review) {
