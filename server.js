@@ -27,12 +27,16 @@ app.use(cors({
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
-  }));           
+  }));       
+
+app.get('/', (req, res) => {
+    res.send('Welcome to Rate the Taste!');
+});
 app.use(express.json());   
 app.use('/api/users', usersRouter);                
 app.use('/restaurants', restaurantsRouter);     
 app.use('/reviews', reviewsRouter);           
-app.use('/', savedRestaurantsRouter);          
+app.use('/saved-restaurants', savedRestaurantsRouter);          
 
 
 const PORT = process.env.PORT || 3000;
