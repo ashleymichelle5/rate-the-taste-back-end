@@ -16,7 +16,7 @@ Ashley Sanchez
 * [My-Trello](https://trello.com/b/4LfBeYE0/group-project)
 * [Front-end repository](https://github.com/xiojay/RT-frontend)
 * [Back-end repository](https://github.com/ashleymichelle5/rate-the-taste-back-end)
-* [Deploy-link]
+* [Deploy-link](https://rate-the-taste.netlify.app)
 
 ## Technologies used:
 
